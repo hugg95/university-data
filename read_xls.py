@@ -41,6 +41,7 @@ def convert(filename="./university.xls"):
                             result['province'].append(province_obj)
 
                 if col == 4 and cell.ctype == 1:
+                    cid = None
                     if cell.value not in cities:
                         if len(cities) == 0:
                             city_id = 1
@@ -53,13 +54,16 @@ def convert(filename="./university.xls"):
                             'pid': province_id
                         }
                         result['city'].append(city_obj)
+                        cid = city_id
+                    else:
+                        cid = cities.index(cell.value) + 1
 
                     result['university'].append({
                         'id': sheet.cell(row, 2).value,
                         'name': sheet.cell(row, 1).value,
                         'level': sheet.cell(row, 5).value,
                         'type': sheet.cell(row, 6).value or u'公办',
-                        'cid': city_id
+                        'cid': cid
                     })
 
     return result
