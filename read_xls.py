@@ -52,7 +52,6 @@ def convert(filename="./university.xls"):
                             'name': cell.value,
                             'pid': province_id
                         }
-                    # if city_obj not in result['city']:
                         result['city'].append(city_obj)
 
                     result['university'].append({
